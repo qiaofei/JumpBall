@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <script type="text/javascript">
+    document.documentElement.style.fontSize = window.innerWidth / 10 + 'px';
+    </script>
+    <link rel="stylesheet" type="text/css" href="assets/stylesheets/styles.css">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <title>涟漪</title>
+    <meta name="description" itemprop="description" content="和球球一起乘风破浪吧！争渡，争渡，惊起涟漪无数">
+    <meta itemprop="image" content="http://www.ellogame.com/assets/gameassets/ripples/share.png">
+    <script src="assets/gameassets/ripples/playcanvas-stable.min.js"></script>
+    <script src="assets/js/datas.js"></script>
+    <script>
+        ASSET_PREFIX = "assets/gameassets/ripples/";
+        SCRIPT_PREFIX = "";
+        SCENE_PATH = "503745.json";
+        CONTEXT_OPTIONS = {
+            'antialias': true,
+            'alpha': false,
+            'preserveDrawingBuffer': false
+        };
+        SCRIPTS = [ 6957383, 6957387, 6957374, 6957382, 6957385, 6957381, 7053753 ];
+        CONFIG_FILENAME = "assets/gameassets/ripples/config.json";
+        pc.script.legacy = false;
+    </script>
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <style type="text/css"></style>  
+</head>
+
+<body>
+    <div class="coin">
+        <img src="assets/img/coin.png" alt="coin" class="coin-img">
+        <span id="coinCount">0</span>
+    </div>
+    <!--添加新的点击区域-->
+	<!--
+    <div class="touchbox">
+    </div>
+    <div class="clickbox">
+    </div>
+	-->
+    <div class="container">
+        <!--模态框-->
+        <div class="modal">
+            <img src="assets/img/sendhref.png" alt="">
+        </div>
+        <div class="panel-box">
+<!--
+            <div class="panel-box-top">
+                <img src="assets/img/headimg.jpg" class="head-img" />
+                <span class="user-nickname">ElloGamePlayer</span>
+                <span class="panal-box-button">关注我们</span>
+            </div>
+-->
+            <ul class="panel-list">
+                <li class="panel-item panel-setting" hidden>
+                    <div class="setting-item android-setting">
+                        <span>仅限安卓用户</span>
+                        <div class="setting-main">
+                            <i class="icon"></i>
+                            <span>性能优化</span>
+                            <div class="setting-switch">
+                                <span class="setting-switch-bar"></span>
+                            </div>
+                        </div>
+                        <span>游戏体验卡顿时</span>
+                        <span>建议请开启优化</span>
+                    </div>
+                    <div class="setting-item  music-setting">
+                        <div class="setting-main">
+                            <i class="icon"></i>
+                            <span>游戏音乐</span>
+                            <div class="setting-switch active">
+                                <span class="setting-switch-bar"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--更新后的图片-->
+<!--
+                    <div class="setting-t">
+                        <img src="assets/img/erweimanew.png" id="erweima">
+                        <img src="assets/img/newlogo.png" alt="" id="newlogo">
+                        <img src="assets/img/wangzhi.png" alt="" id="wangzhi">
+                    </div>
+                    <div class="copyright">
+                        ElloGame®游戏平台©Copyright ElloWorld®
+                    </div>
+-->
+                </li>
+                <li class="panel-item panel-dashang" hidden>
+                    <img class="dsbg" src="assets/img/dsbg.png" />
+                    <div class="dashang-btns">
+                        <div class="dashang-btn dashang-btn1" id="pay1"><i class="moneyicon"></i> </div>
+                        <div class="dashang-btn dashang-btn2" id="pay2"><i class="moneyicon"></i> </div>
+                        <div class="dashang-btn dashang-btn3" id="pay3"><i class="moneyicon"></i> </div>
+                        <div class="dashang-btn dashang-btn4" id="pay4"><i class="moneyicon"></i> </div>
+                    </div>
+                    <div class="dashang-users">
+                        <div class="dashang-number">
+                            <span><i id="dashangNumber">0</i>人打赏</span>
+                        </div>
+                        <div class="dashang-list">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="panel-item panel-rank" hidden>
+                    <div class="rank-btns">
+                        <div class="rank-btn active" data-type="friend">
+                            <span class="rank-type">好友排行</span>
+                            <span>进入游戏时刷新</span>
+                        </div>
+                        <div class="rank-btn" data-type="all">
+                            <span class="rank-type">全国排行</span>
+                            <span>进入游戏时刷新</span>
+                        </div>
+                    </div>
+                    <div class="rank-box">
+                        <div class="rank-item my-rank">
+                            <span class="rank-index">0</span>
+                            <div class="rank-userhead">
+                                <img src="assets/img/headimg.jpg">
+                            </div>
+                            <span class="rank-username"></span>
+                            <span class="rank-score">0</span>
+                        </div>
+                        <div class="add-friend-box">
+                            <i class="icon-fri"></i>
+                            <span class="friend-numbers">您的好友人数：<i id="friendNumber"></i> </span>
+                            <span class="all-numbers">全国游戏人数：<i id="allNumber"></i> </span>
+                            <div class="add-friend">
+                                添加好友
+                                <i class="icon-fri-add"></i>
+                            </div>
+                        </div>
+                        <ul class="rank-list">
+                        </ul>
+                    </div>
+                </li>
+                <li class="panel-item panel-gamelist" hidden>
+                    <ul class="game-list">
+                    </ul>
+                </li>
+                <li class="panel-item panel-chat" hidden>
+                    <iframe src="" class="chatFrame"></iframe>
+                </li>
+                <li class="panel-item panel-qcode">
+                    <img src="assets/img/home/qrcode.png" class="qcodeimg">
+                    <div class="copyright">
+                         ElloGame®游戏平台©Copyright ElloWorld®
+                    </div>
+-->
+                </li>
+            </ul>
+        </div>
+<!--
+        <div class="nav">
+            <ul class="nav-list">
+                <li class="nav-bar" data-target="panel-setting">
+                    <i class="nav-icon nav-icon-setting"></i>
+                </li>
+                <li class="nav-bar" data-target="panel-dashang">
+                    <i class="nav-icon nav-icon-dashang"></i>
+                </li>
+                <li class="nav-bar" data-target="panel-rank">
+                    <i class="nav-icon nav-icon-rank"></i>
+                </li>
+                <li class="nav-bar" data-target="panel-gamelist">
+                    <i class="nav-icon nav-icon-gamelist"></i>
+                </li>
+-->
+                <!--<li class="nav-bar" data-target="panel-chat">-->
+                    <!--<i class="nav-icon nav-icon-chat"></i>-->
+                <!--</li>-->
+<!--
+            </ul>
+            <div class="nav-back">
+                <i class="nav-icon-back"></i>
+            </div>
+        </div>
+-->
+    </div>
+    <div class="game-ui">
+        <div class="result">
+            <p id = "rank1" >Score:</p>
+            <p id = "score">0</p>
+            <p id="rank2"></p>
+        </div>
+        <div id = "uistart">
+            <i id="start" class="icon icon-play"></i>
+        </div>
+        <div class="logo">
+            <img class="game-logo" src="assets/gameassets/ripples/logo.png">
+        </div>
+        <div id = "uiend">
+            <i id="loadscene" class="icon circle icon-restart"></i>
+        </div>
+    </div>
+    <div class="sure_back_container">
+        <div class="sure_back">
+            <p>您确定要离开游戏吗?</p>
+            <img src="assets/img/qrcode.png" alt="" class="back_qrcode">
+            <ul id="back_gameList">
+            </ul>
+            <p class="still_leave">仍要离开</p>
+            <div class="sure_back_check">
+                <input type="checkbox" class="check">
+                <p>永不再提醒</p>
+            </div>
+        </div>
+        <p class="sure_back_bottom">点击任意位置返回游戏</p>
+    </div>
+    <div class="tip_img_box">
+        <img src="assets/img/hp.png" alt="" class="show_hengping">
+        <img src="assets/img/sp.png" alt=""  class="show_shuping">
+    </div>
+    <script type="text/javascript">
+    var gameInfo = {
+            gameName: 'elloripple',
+            hasCoin:0
+        },
+        userInfo = {
+            id: 0,
+            headimgurl: 'assets/img/headimg.jpg',
+            nickname: 'ElloGamePlayer',
+            topscore: 0,
+        },
+        shareobj = {
+            'title': "涟漪 - ElloGame ",
+            'desc': "和球球一起乘风破浪吧！争渡，争渡，惊起涟漪无数",
+            'link': 'http://www.ellogame.com/index.php/api/Wxapi/oauth?game=' + gameInfo.gameName,
+            'imgUrl': "http://www.ellogame.com/assets/gameassets/ripples/share.png"
+        };
+
+        function setGameoverShare(scoreinfo){
+            <!--var scorenum=parseInt($("#score").html());-->
+            <!--shareobj.title='争渡！争渡！惊起'+scorenum+'滩涟漪';-->
+            <!--if(scorenum > userInfo.topscore){-->
+                <!--userInfo.topscore = scorenum;-->
+                <!--shareobj.desc='我的天呐！我一不小心打破了自己的记录！';-->
+                <!--$("#rank2").html('我的天呐！<br>一不小心打破了自己的记录！');-->
+            <!--}else{-->
+                <!--$("#rank2").html('BEST: '+userInfo.topscore);-->
+            <!--}-->
+            <!--setsharemsg();-->
+            var localStorage = window.localStorage;
+            if (!localStorage.getItem("a")) {
+                localStorage.setItem("a", 0);
+            }
+            userInfo.topscore = localStorage.getItem("a");
+            var scorenum=parseInt($("#score").html());
+            shareobj.title='ElloTa！我搭建的艾洛塔有'+scorenum+'层，看看你能搭建多少层。';
+            if(scorenum > userInfo.topscore){
+                userInfo.topscore = scorenum;
+            }
+            $("#rank2").html('BEST: '+userInfo.topscore);
+            localStorage.setItem("a", userInfo.topscore);
+        }
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d4b00b06dc1184ab95c3f50b8d0c93c5";
+          var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="assets/js/aes.js"></script>
+    <script src="assets/js/pad-zeropadding.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/gameassets/ripples/__start__.js"></script>
+    <script src="assets/gameassets/ripples/__loading__.js"></script>
+</body>
+
+</html>
